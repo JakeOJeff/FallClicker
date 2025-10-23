@@ -8,20 +8,14 @@ function clicker:load()
     self.scale = 1
     self.x = wW / 2
     self.y = wH / 2
+
+    self.hovered = false
 end
 
 function clicker:update(dt)
-    local mx, my = love.mouse.getPosition()
-    local scaledWidth = self.width * self.scale
-    local scaledHeight = self.height * self.scale
-    local drawX = self.x - scaledWidth / 2
-    local drawY = self.y - scaledHeight / 2
 
-    if mx > drawX and mx < drawX + scaledWidth and my > drawY and my < drawY + scaledHeight and love.mouse.isDown(1) then
-        self.scale = 1.2
-    else
-        self.scale = 1
-    end
+
+
 end
 
 function clicker:draw()
@@ -34,4 +28,22 @@ function clicker:draw()
     )
 end
 
+function clicker:mousepressed(x, y, button)
+    local scaledWidth = self.width * self.scale
+    local scaledHeight = self.height * self.scale
+    local drawX = self.x - scaledWidth / 2
+    local drawY = self.y - scaledHeight / 2
+    if x > drawX and x < drawX + scaledWidth and y > drawY and y < drawY + scaledHeight and love.mouse.isDown(1) then
+        self.scale = 1.2
+        self:increment(1)
+    end
+end
+
+function clicker:mousereleased(x, y, button)
+    self.scale = 1
+end
+
+function clicker:increment(incrementVal)
+    Coins = Coins + incrementVal
+end
 return clicker
