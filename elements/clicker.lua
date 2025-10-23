@@ -33,10 +33,13 @@ function clicker:mousepressed(x, y, button)
     local scaledHeight = self.height * self.scale
     local drawX = self.x - scaledWidth / 2
     local drawY = self.y - scaledHeight / 2
-    if x > drawX and x < drawX + scaledWidth and y > drawY and y < drawY + scaledHeight and love.mouse.isDown(1) then
-        self.scale = 1.2
-        self:increment(1)
+    if button == 1 then
+        if x > drawX and x < drawX + scaledWidth and y > drawY and y < drawY + scaledHeight then
+            self.scale = 1.2
+            self:increment(1)
+        end
     end
+
 end
 
 function clicker:mousereleased(x, y, button)
