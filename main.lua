@@ -1,6 +1,7 @@
 
 
 -- Globals
+wW, wH = love.graphics.getDimensions()
 Coins = 0
 
 
