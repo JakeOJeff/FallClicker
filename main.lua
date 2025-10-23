@@ -11,7 +11,7 @@ local clicker = require "elements.clicker"
 
 function love.load()
 
-
+    clicker:load()
 end
 
 function love.update(dt)
@@ -19,5 +19,5 @@ function love.update(dt)
 end
 
 function love.draw()
-    
+    clicker:draw()
 end
