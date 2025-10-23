@@ -14,6 +14,18 @@ function clicker:load()
     self.y = wH/2 - self.currentHeight/2
  end
 
+ function clicker:update(dt)
+    
+    local mx, my = love.mouse.getPosition()
+    self.currentWidth = self.width/self.scale
+    self.currentHeight = self.height/self.scale
+
+    if mx > self.x and mx < self.x + self.currentWidth and my > self.y and my < self.y + self.currentHeight then
+        self.scale = 2
+    else
+        self.scale = 1
+    end
+ end
 
  function clicker:draw()
     love.graphics.draw(self.img, self.x, self.y, 0, self.scale, self.scale)

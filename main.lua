@@ -15,7 +15,7 @@ function love.load()
 end
 
 function love.update(dt)
-    
+    clicker:update(dt)
 end
 
 function love.draw()
