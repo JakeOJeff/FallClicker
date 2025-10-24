@@ -38,6 +38,7 @@ function clicker:update(dt)
         v.x = v.x + v.vx * dt
         v.y = v.y + v.vy * dt
         v.lifetime = v.lifetime - dt
+        v.scale = v.scale + .5 * dt
 
         if v.lifetime <= 0 then
             table.remove(self.particles, _)
@@ -58,9 +59,12 @@ function clicker:draw()
 
     
     for _, v in ipairs(self.particles) do
-
-        love.graphics.draw(self.particleImg, v.x, v.y, v.rotation, 1, 1, self.particleImg:getWidth() /2 , self.particleImg:getHeight() /2 )
-
+        love.graphics.push()
+        love.graphics.translate(v.x, v.y)
+        love.graphics.rotate(v.rotation)
+        love.graphics.scale(v.scale, v.scale)
+        love.graphics.draw(self.particleImg, -self.particleImg:getWidth() /2 , -self.particleImg:getHeight() /2 )
+        love.graphics.pop()
     end
 end
 
@@ -89,9 +93,10 @@ function clicker:addParticles(x, y)
             table.insert(self.particles, {
             x = x,
             y = y,
-            vx = speed * math.cos(angle),
-            vy = speed * math.sin(angle),
+            vx = speed * math.cos(angle) * love.math.random(0.5, 1),
+            vy = speed * math.sin(angle)* love.math.random(0.5, 1),
             rotation = love.math.random() * 2 * math.pi,
+            scale = 0.3,
             lifetime = 1
         })
     end
