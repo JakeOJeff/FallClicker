@@ -77,6 +77,8 @@ function clicker:mousepressed(x, y, button)
         effects:new()
         self:increment(1)
         self:addParticles(x, y)
+            background:update()
+
     end
 end
 
