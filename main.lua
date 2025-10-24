@@ -1,17 +1,13 @@
-
 -- Globals
 wW, wH = love.graphics.getDimensions()
 Coins = 0
-
 
 -- Requiring Elements
 local clicker = require "elements.clicker"
 effects = require "elements.effects"
 
-
 -- Set default systems
 love.graphics.setDefaultFilter("nearest", "nearest")
-
 
 function love.load()
 
@@ -32,7 +28,9 @@ function love.mousereleased(x, y, button)
 end
 
 function love.draw()
+
+    effects:draw()
+
     clicker:draw()
     love.graphics.print(Coins)
-    effects:draw()
 end
