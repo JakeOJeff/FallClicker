@@ -15,6 +15,13 @@ function effects:new()
     obj.lifetime = 5
     obj.speed = 200
 
+    obj.sineOffset = love.math.random() * math.pi * 2
+    obj.sineAmplitude = love.math.random(5, 10)
+    obj.sineFrequency = love.math.random(1, 3)
+
+    obj.bounceStr = love.math.random(0.1, 0.25)
+    obj.bounceDelay = 1
+
     table.insert(effects.list, obj)
     return obj
 
@@ -42,8 +49,10 @@ end
 function effects:draw()
     for _, e in ipairs(effects.list) do
         love.graphics.push()
+        love.graphics.translate(e.x, e.y)
+        love.graphics.rotate(e.rotation)
         love.graphics.scale(e.scale, e.scale)
-        love.graphics.draw(e.img, e.x, e.y, e.rotation, 1, 1, e.img:getWidth() /2 , e.img:getHeight() /2 )
+        love.graphics.draw(e.img, -e.img:getWidth() /2 , -e.img:getHeight() /2 )
         love.graphics.pop()
     end
 end
