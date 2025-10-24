@@ -1,6 +1,6 @@
 local background = {}
 
-local totalLevels = 1
+local totalLevels = 2
 local totalStates = 5
 
 background.level = 1
@@ -32,6 +32,13 @@ end
 function background:updateCoin()
     if Coins % 5 == 0 and background.state < totalStates then
         self.state = self.state + 1
+        self.fadeAlpha = 0
+        self.targetAlpha = 1
+    end
+
+    if Coins % 50 == 0 and background.level < totalLevels then
+        self.level = self.level + 1
+        self.state = 1
         self.fadeAlpha = 0
         self.targetAlpha = 1
     end
