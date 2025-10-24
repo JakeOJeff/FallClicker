@@ -1,6 +1,6 @@
 local effects = {}
 effects.__index = effects
-
+effects.list = {}
 
 function effects:new()
     local obj = {}
