@@ -24,6 +24,12 @@ function clicker:update(dt)
     self.scaledHeight = self.height * self.scale
     self.drawX = self.x - self.scaledWidth / 2
     self.drawY = self.y - self.scaledHeight / 2
+
+    if self.rotate > 0 then
+        self.rotate = self.rotate - math.rad(15) * dt
+    elseif self.rotate < 0 then
+        self.rotate = self.rotate + math.rad(15) * dt
+    end
 end
 
 function clicker:draw()
