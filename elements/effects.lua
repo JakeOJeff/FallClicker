@@ -36,6 +36,8 @@ function effects:update(dt)
 end
 
 function effects:draw()
-    
+    for _, e in ipairs(effects.list) do
+        love.graphics.draw(e.img, e.x, e.y, e.rotation, 1, 1, e.img:getWidth() /2 , e.img:getHeight() /2 )
+    end
 end
 return effects
