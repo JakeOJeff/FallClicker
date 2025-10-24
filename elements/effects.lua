@@ -21,20 +21,17 @@ end
 
 
 function effects:update(dt)
-    obj.timer = obj.timer + dt
+    
+    for i = #effects.list, 1, -1 do
+        local e = effects.list[i]
+        e.timer = e.timer + dt
+        e.rotation = (e.rotation + 5 * dt) % (2 * math.pi)
+        e.y = e.y - e.speed * dt
 
-    if obj.rotation < 2 * math.pi then
-        obj.rotation = obj.rotation + 5 * dt
+        if e.timer > e.lifetime or e.y > wH + e.img:getHeight() then
+            table.remove(effects.list, i)
+        end
     end
-
-    if obj.y > wH then
-        table.remove(effects, )
-    end
-
-    if obj.y < wH + obj.img:getHeight() then
-        obj.y = obj.y + 200 * dt
-    end
-
 
 end
 
