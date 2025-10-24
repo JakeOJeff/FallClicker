@@ -14,7 +14,7 @@ function clicker:load()
     self.drawX = self.x - self.scaledWidth / 2
     self.drawY = self.y - self.scaledHeight / 2
 
-    self.paritcles = {}
+    self.particles = {}
     self.particleImg = love.graphics.newImage("assets/effect.png")
 
     self.rotate = 0
@@ -34,7 +34,7 @@ function clicker:update(dt)
         self.rotate = self.rotate + math.rad(15) * dt
     end
 
-    for _, v in ipairs(self.paritcles) do
+    for _, v in ipairs(self.particles) do
         v.x = v.x + v.vx * dt
         v.y = v.y + v.vy * dt
         v.lifetime = v.lifetime - dt
@@ -46,6 +46,7 @@ function clicker:update(dt)
 end
 
 function clicker:draw()
+    love.graphics.push()
     love.graphics.translate(self.x, self.y)
     love.graphics.scale(self.scale, self.scale)
     love.graphics.rotate(self.rotate)
@@ -53,9 +54,13 @@ function clicker:draw()
         self.img,
         -self.width / 2, -self.height / 2
     )
+    love.graphics.pop()
 
+    
     for _, v in ipairs(self.particles) do
-        love.graphics.draw(self.particleImg, v.x, v.y)
+
+        love.graphics.draw(self.particleImg, v.x, v.y, v.rotation, 1, 1, self.particleImg:getWidth() /2 , self.particleImg:getHeight() /2 )
+
     end
 end
 
@@ -67,6 +72,7 @@ function clicker:mousepressed(x, y, button)
         self.rotate = math.rad(love.math.random(-15, 15))
         effects:new()
         self:increment(1)
+        self:addParticles(x, y)
     end
 end
 
@@ -77,14 +83,15 @@ function clicker:mousereleased(x, y, button)
 end
 
 function clicker:addParticles(x, y)
-    for i = 0, 360, 2 do
+    for i = 0, 360, 36 do
         local angle = math.rad(i)
-        local speed = love.math.random(50, 70)
+        local speed = love.math.random(100, 200)
             table.insert(self.particles, {
             x = x,
             y = y,
             vx = speed * math.cos(angle),
             vy = speed * math.sin(angle),
+            rotation = love.math.random() * 2 * math.pi,
             lifetime = 1
         })
     end
