@@ -6,6 +6,7 @@ Coins = 0
 
 -- Requiring Elements
 local clicker = require "elements.clicker"
+local effects = require "elements.effects"
 
 
 -- Set default systems
