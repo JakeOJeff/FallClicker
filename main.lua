@@ -8,6 +8,10 @@ Coins = 0
 local clicker = require "elements.clicker"
 
 
+-- Set default systems
+love.graphics.setDefaultFilter("nearest", "nearest")
+
+
 function love.load()
 
     clicker:load()

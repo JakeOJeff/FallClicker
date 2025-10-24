@@ -18,7 +18,6 @@ function clicker:load()
 end
 
 function clicker:update(dt)
-    -- Update scaled size and draw position
     self.scaledWidth = self.width * self.scale
     self.scaledHeight = self.height * self.scale
     self.drawX = self.x - self.scaledWidth / 2
