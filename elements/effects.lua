@@ -11,7 +11,10 @@ function effects:new()
     obj.rotation = love.math.random()  * 2 * math.pi
     obj.img = love.graphics.newImage("assets/clicker.png")
     obj.timer = 0
+    obj.lifetime = 2
+    obj.speed = 200
 
+    table.insert(effects.list, obj)
     return obj
 
 end
