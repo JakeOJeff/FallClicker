@@ -14,6 +14,8 @@ function clicker:load()
     self.drawX = self.x - self.scaledWidth / 2
     self.drawY = self.y - self.scaledHeight / 2
 
+    self.rotate = 0
+
     self.hovered = false
 end
 
@@ -25,12 +27,12 @@ function clicker:update(dt)
 end
 
 function clicker:draw()
+    love.graphics.translate(self.x, self.y)
+    love.graphics.scale(self.scale, self.scale)
+    love.graphics.rotate(self.rotate)
     love.graphics.draw(
         self.img,
-        self.x, self.y,
-        0,
-        self.scale, self.scale,
-        self.width / 2, self.height / 2
+        -self.width / 2, -self.height / 2
     )
 end
 
@@ -39,6 +41,7 @@ function clicker:mousepressed(x, y, button)
        x > self.drawX and x < self.drawX + self.scaledWidth and
        y > self.drawY and y < self.drawY + self.scaledHeight then
         self.scale = 1.2
+        self.rotate = math.rad(love.math.random(-15, 15))
         effects:new()
         self:increment(1)
     end
