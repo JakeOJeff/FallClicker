@@ -83,7 +83,7 @@ function clicker:mousereleased(x, y, button)
 end
 
 function clicker:addParticles(x, y)
-    for i = 0, 360, 36 do
+    for i = 0, 360, (360/5) do
         local angle = math.rad(i)
         local speed = love.math.random(100, 200)
             table.insert(self.particles, {
