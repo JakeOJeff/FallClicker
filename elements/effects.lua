@@ -11,7 +11,8 @@ function effects:new()
     obj.rotation = love.math.random()  * 2 * math.pi
     obj.img = love.graphics.newImage("assets/effect.png")
     obj.timer = 0
-    obj.scale = 0.5
+    obj.scale = 0
+    obj.maxScale = love.math.random(0.5, 0.6)
     obj.lifetime = 5
     obj.speed = 200
 
@@ -19,7 +20,7 @@ function effects:new()
     obj.sineAmplitude = love.math.random(5, 10)
     obj.sineFrequency = love.math.random(1, 3)
 
-    obj.bounceStr = love.math.random(0.1, 0.25)
+    obj.bounceStr = love.math.random(0.1, 0.2)
     obj.bounceDelay = 1
 
     table.insert(effects.list, obj)
@@ -33,11 +34,14 @@ function effects:update(dt)
     for i = #effects.list, 1, -1 do
         local e = effects.list[i]
         e.timer = e.timer + dt
-        e.rotation = (e.rotation + 0.5 * dt) % (2 * math.pi)
+        local t = e.timer * 3 -- speed of growth
+        e.scale = e.maxScale * (1 - math.exp(-t) * math.cos(t * math.pi * e.bounceStr))
+
+
         e.y = e.y + e.speed * dt
-        if e.scale < 1 then
-            e.scale = e.scale + 0.25 * dt
-        end
+        e.x = e.x + math.sin(e.timer * e.sineFrequency + e.sineOffset) * e.sineAmplitude * dt
+
+        e.rotation = e.rotation + math.sin(e.timer * e.sineFrequency + e.sineAmplitude) * 0.1 * dt
 
         if e.timer > e.lifetime or e.y > wH + e.img:getHeight() then
             table.remove(effects.list, i)
