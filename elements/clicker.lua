@@ -39,6 +39,7 @@ function clicker:mousepressed(x, y, button)
        x > self.drawX and x < self.drawX + self.scaledWidth and
        y > self.drawY and y < self.drawY + self.scaledHeight then
         self.scale = 1.2
+        effects:new()
         self:increment(1)
     end
 end

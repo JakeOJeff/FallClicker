@@ -11,7 +11,7 @@ function effects:new()
     obj.rotation = love.math.random()  * 2 * math.pi
     obj.img = love.graphics.newImage("assets/effect.png")
     obj.timer = 0
-    obj.lifetime = 2
+    obj.lifetime = 3
     obj.speed = 200
 
     table.insert(effects.list, obj)
@@ -26,7 +26,7 @@ function effects:update(dt)
         local e = effects.list[i]
         e.timer = e.timer + dt
         e.rotation = (e.rotation + 5 * dt) % (2 * math.pi)
-        e.y = e.y - e.speed * dt
+        e.y = e.y + e.speed * dt
 
         if e.timer > e.lifetime or e.y > wH + e.img:getHeight() then
             table.remove(effects.list, i)

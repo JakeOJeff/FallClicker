@@ -6,7 +6,7 @@ Coins = 0
 
 -- Requiring Elements
 local clicker = require "elements.clicker"
-local effects = require "elements.effects"
+effects = require "elements.effects"
 
 
 -- Set default systems
@@ -20,6 +20,7 @@ end
 
 function love.update(dt)
     clicker:update(dt)
+    effects:update(dt)
 end
 
 function love.mousepressed(x, y, button)
@@ -33,4 +34,5 @@ end
 function love.draw()
     clicker:draw()
     love.graphics.print(Coins)
+    effects:draw()
 end
