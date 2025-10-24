@@ -12,7 +12,7 @@ function effects:new()
     obj.img = love.graphics.newImage("assets/effect.png")
     obj.timer = 0
     obj.scale = 0
-    obj.maxScale = love.math.random(0.5, 0.6)
+    obj.maxScale = love.math.random(0.5, 0.55)
     obj.lifetime = 5
     obj.speed = 200
 
@@ -58,6 +58,8 @@ function effects:draw()
         love.graphics.scale(e.scale, e.scale)
         love.graphics.draw(e.img, -e.img:getWidth() /2 , -e.img:getHeight() /2 )
         love.graphics.pop()
+        love.graphics.print("+1", e.x, e.y)
+
     end
 end
 return effects

@@ -66,6 +66,8 @@ function clicker:draw()
         love.graphics.draw(self.particleImg, -self.particleImg:getWidth() /2 , -self.particleImg:getHeight() /2 )
         love.graphics.pop()
     end
+
+    love.graphics.setColor(1,1,1,1)
 end
 
 function clicker:mousepressed(x, y, button)

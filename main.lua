@@ -4,8 +4,13 @@ Coins = 0
 
 -- Requiring Elements
 local clicker = require "elements.clicker"
+local gui = require "elements.gui"
 background = require "elements.background"
 effects = require "elements.effects"
+
+-- font
+
+font = love.graphics.newFont("assets/BoldPixels.ttf", 36)
 
 -- Set default systems
 love.graphics.setDefaultFilter("nearest", "nearest")
@@ -14,6 +19,7 @@ function love.load()
 
     clicker:load()
     background:loadLevel()
+    gui:load()
 end
 
 function love.update(dt)
@@ -32,9 +38,10 @@ function love.mousereleased(x, y, button)
 end
 
 function love.draw()
+    love.graphics.setFont(font)
     background:draw()
     effects:draw()
 
     clicker:draw()
-    love.graphics.print(Coins)
+    gui:draw()
 end

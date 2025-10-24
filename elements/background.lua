@@ -30,13 +30,13 @@ function background:update(dt)
 end    
 
 function background:updateCoin()
-    if Coins % 5 == 0 and background.state < totalStates then
+    if Coins % 10 == 0 and background.state < totalStates then
         self.state = self.state + 1
         self.fadeAlpha = 0
         self.targetAlpha = 1
     end
 
-    if Coins % 50 == 0 and background.level < totalLevels then
+    if Coins % 40 == 0 and background.level < totalLevels then
         self.level = self.level + 1
         self.state = 1
         self.fadeAlpha = 0
