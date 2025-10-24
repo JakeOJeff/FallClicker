@@ -14,6 +14,9 @@ function clicker:load()
     self.drawX = self.x - self.scaledWidth / 2
     self.drawY = self.y - self.scaledHeight / 2
 
+    self.paritcles = {}
+    self.particleImg = love.graphics.newImage("assets/effect.png")
+
     self.rotate = 0
 
     self.hovered = false
@@ -30,6 +33,16 @@ function clicker:update(dt)
     elseif self.rotate < 0 then
         self.rotate = self.rotate + math.rad(15) * dt
     end
+
+    for _, v in ipairs(self.paritcles) do
+        v.x = v.x + v.vx * dt
+        v.y = v.y + v.vy * dt
+        v.lifetime = v.lifetime - dt
+
+        if v.lifetime <= 0 then
+            table.remove(self.particles, _)
+        end
+    end
 end
 
 function clicker:draw()
@@ -40,6 +53,10 @@ function clicker:draw()
         self.img,
         -self.width / 2, -self.height / 2
     )
+
+    for _, v in ipairs(self.particles) do
+        love.graphics.draw(self.particleImg, v.x, v.y)
+    end
 end
 
 function clicker:mousepressed(x, y, button)
@@ -57,6 +74,21 @@ function clicker:mousereleased(x, y, button)
     if button == 1 then
         self.scale = 1
     end
+end
+
+function clicker:addParticles(x, y)
+    for i = 0, 360, 2 do
+        local angle = math.rad(i)
+        local speed = love.math.random(50, 70)
+            table.insert(self.particles, {
+            x = x,
+            y = y,
+            vx = speed * math.cos(angle),
+            vy = speed * math.sin(angle),
+            lifetime = 1
+        })
+    end
+
 end
 
 function clicker:increment(incrementVal)
