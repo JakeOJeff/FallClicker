@@ -38,7 +38,7 @@ function clicker:update(dt)
         v.x = v.x + v.vx * dt
         v.y = v.y + v.vy * dt
         v.lifetime = v.lifetime - dt
-        v.scale = v.scale + .5 * dt
+        v.scale = v.scale - .5 * dt
 
         if v.lifetime <= 0 then
             table.remove(self.particles, _)
@@ -96,7 +96,7 @@ function clicker:addParticles(x, y)
             vx = speed * math.cos(angle) * love.math.random(0.5, 1),
             vy = speed * math.sin(angle)* love.math.random(0.5, 1),
             rotation = love.math.random() * 2 * math.pi,
-            scale = 0.3,
+            scale = 0.7,
             lifetime = 1
         })
     end
