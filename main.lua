@@ -17,13 +17,14 @@ function love.load()
 end
 
 function love.update(dt)
+    background:update(dt)
     clicker:update(dt)
     effects:update(dt)
 end
 
 function love.mousepressed(x, y, button)
     clicker:mousepressed(x, y, button)
-    
+
 end
 
 function love.mousereleased(x, y, button)
