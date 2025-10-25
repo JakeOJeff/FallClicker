@@ -38,6 +38,7 @@ function gui:draw()
     love.graphics.print(Coins, self.coinDisplay.textX, self.coinDisplay.textY)
 
     love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(self.sidebarButton.img, self.sidebarButton.x, self.sidebarButton.y)
 end
 
 function gui:mousepressed(x, y, button)
