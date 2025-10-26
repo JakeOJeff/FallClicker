@@ -41,6 +41,7 @@ function love.update(dt)
     clicker:update(dt)
     effects:update(dt)
     gui:update(dt)
+    tutorial:update()
     IncrementValue = 1 * Upgrade * Multiplier * Rebirths
 end
 

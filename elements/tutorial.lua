@@ -17,7 +17,12 @@ function tutorial:load()
 end
 
 function tutorial:update()
-    
+    for i, v in ipairs(self.items) do
+        if not v.done and v.condition() then
+            v.done = true
+            break
+        end
+    end
 end
 
 function tutorial:draw()
