@@ -77,7 +77,7 @@ function clicker:mousepressed(x, y, button)
         self.scale = 1.2
         self.rotate = math.rad(love.math.random(-15, 15))
         effects:new()
-        self:increment(1)
+        self:increment(1 * Multiplier * Rebirths * Upgrade)
         self:addParticles(x, y)
         background:updateCoin()
 
