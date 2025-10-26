@@ -33,12 +33,17 @@ function gui:load()
         "Buys Global Multiplier and Map",
         "Upgrade",
         function()
-            return Coins > 0
+            return Coins >= UpgradeCost
         end,
         function()
-            print("HELLO")
-            Coins = Coins - 50
-            Multiplier = Multiplier + 2
+            if Coins > UpgradeCost and Multiplier <= (totalStates) then
+                Coins = Coins - UpgradeCost
+                UpgradeCost = UpgradeCost + 20
+                Multiplier = Multiplier + 2
+                background.state = background.state + 1
+                background.fadeAlpha = 0
+                background.targetAlpha = 1
+            end
         end
     )
 end

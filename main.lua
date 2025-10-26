@@ -2,14 +2,16 @@
 wW, wH = love.graphics.getDimensions()
 Coins = 0
 Upgrade = 1
+UpgradeCost = 20
 Multiplier = 1
 Rebirths = 1
-
+totalLevels = 2
+totalStates = 5
 -- Requiring Elements
 local clicker = require "elements.clicker"
-local gui = require "elements.gui"
 background = require "elements.background"
 effects = require "elements.effects"
+local gui = require "elements.gui"
 
 -- font
 fontSS = love.graphics.newFont("assets/BoldPixels.ttf", 16)
