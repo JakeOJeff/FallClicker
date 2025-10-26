@@ -16,35 +16,30 @@ function gui:load()
         wW - 42 - 10,
         wH / 2 - 21,
         love.graphics.newImage("assets/sButton.png"),
-        function ()
-            
-        end
+        function() end
     )
+
     self.sidebarButton.opened = false
     self.sidebarButton.targetX = wW - 42 - 10 - 200
-    self.sidebarButton.func = function ()
+    self.sidebarButton.func = function()
         self.sidebarButton.opened = not self.sidebarButton.opened
     end
     self.sidebarButton.defX = self.sidebarButton.x
-    self.sidebar = {
-        x = wW,
-        y = 0,
-        with = 200,
-        height = wH,
-    }
 
-    self.sidebar.multiplier = sidebar:newElement("Buy Multiplier", "Buys Global Multiplier and Map","Upgrade", function ()
-        if Coins > 50 then
-            return true
-        else
-            return false
-        end
-        end, function ()
+    self.sidebar = sidebar:new(wW, 0, 200, wH)
+
+    self.sidebar:newElement(
+        "Buy Multiplier",
+        "Buys Global Multiplier and Map",
+        "Upgrade",
+        function()
+            return Coins > 50
+        end,
+        function()
             Coins = Coins - 50
             Multiplier = Multiplier + 2
-         end)
-
-
+        end
+    )
 end
 
 function gui:update(dt)
@@ -55,15 +50,15 @@ function gui:update(dt)
         self.sidebarButton.x = math.min(self.sidebarButton.x + 300 * dt, self.sidebarButton.defX)
         self.sidebar.x = self.sidebarButton.x + 42 + 10
     end
-    sidebar:update(dt)
+
+    self.sidebar:update(dt)
     button:update(dt)
 end
 
 function gui:draw()
     love.graphics.draw(self.coinDisplay.img, self.coinDisplay.x, self.coinDisplay.y)
 
-    -- DISPLAYING COINS
-    local str = string.format("%09d", Coins) -- "00000023"
+    local str = string.format("%09d", Coins)
     local firstReal = string.find(str, "[1-9]") or #str
     local leadingZeros = string.sub(str, 1, firstReal - 1)
     local actualNum = string.sub(str, firstReal)
@@ -76,14 +71,14 @@ function gui:draw()
     love.graphics.print(actualNum, self.coinDisplay.textX + offset, self.coinDisplay.textY)
 
     love.graphics.setColor(1, 1, 1)
-    
     button:draw()
 
     love.graphics.setColor(1, 0.88, 0.92)
-    love.graphics.rectangle("fill", self.sidebar.x, self.sidebar.y, self.sidebar.with, self.sidebar.height)
+    love.graphics.rectangle("fill", self.sidebar.x, self.sidebar.y, self.sidebar.width, self.sidebar.height)
 
-    sidebar:draw()
+    self.sidebar:draw()
 end
+
 
 function gui:mousepressed(x, y, mousebutton)
     button:mousepressed(x, y, mousebutton)
