@@ -13,6 +13,7 @@ effects = require "elements.effects"
 
 -- font
 fontSS = love.graphics.newFont("assets/BoldPixels.ttf", 16)
+fontSMS = love.graphics.newFont("assets/BoldPixels.ttf", 22)
 fontS = love.graphics.newFont("assets/BoldPixels.ttf", 28)
 font = love.graphics.newFont("assets/BoldPixels.ttf", 36)
 
