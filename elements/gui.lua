@@ -44,19 +44,7 @@ function gui:update(dt)
         self.sidebarButton.x = math.min(self.sidebarButton.x + 300 * dt, self.sidebarButton.defX)
         self.sidebar.x = self.sidebarButton.x + 42 + 10
     end
-    local mx, my = love.mouse.getPosition()
-    if mx > self.sidebarButton.x and mx < self.sidebarButton.x + self.sidebarButton.img:getWidth() and
-       my > self.sidebarButton.y and my < self.sidebarButton.y + self.sidebarButton.img:getHeight() then
-        self.sidebarButton.hovered = true
-       else
-        self.sidebarButton.hovered = false
-    end
-
-    if self.sidebarButton.hovered then
-        self.sidebarButton.scale = math.min(self.sidebarButton.scale + 2 * dt, 1.1)
-    else
-        self.sidebarButton.scale = math.max(self.sidebarButton.scale - 2 * dt, 1)
-    end
+    self.sidebarButton:update(dt)
 end
 
 function gui:draw()
@@ -77,20 +65,14 @@ function gui:draw()
 
     love.graphics.setColor(1, 1, 1)
     
-    love.graphics.push()
-    love.graphics.translate(self.sidebarButton.x + self.sidebarButton.img:getWidth() / 2, self.sidebarButton.y + self.sidebarButton.img:getHeight() / 2)
-    love.graphics.scale(self.sidebarButton.scale)
-    love.graphics.draw(self.sidebarButton.img, -self.sidebarButton.img:getWidth()/2, -self.sidebarButton.img:getWidth()/2)
-    love.graphics.pop()
+    self.sidebarButton:draw()
 
     love.graphics.setColor(1, 0.88, 0.92)
     love.graphics.rectangle("fill", self.sidebar.x, self.sidebar.y, self.sidebar.with, self.sidebar.height)
 end
 
 function gui:mousepressed(x, y, button)
-    if self.sidebarButton.hovered and button == 1 then
-        self.sidebarButton.opened = not self.sidebarButton.opened
-    end
+    self.sidebarButton:mousepressed(x, y, button)
 end
 
 return gui
