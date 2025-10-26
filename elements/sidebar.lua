@@ -26,7 +26,8 @@ function sidebar:newElement(name, desc, cost, buttonName, condition, func)
         buttonName = buttonName,
         condition = condition,
         func = func,
-        button = button:new(0, 0, buyImg, func, buttonName, condition),
+
+        button = button:new(0, 0, buyImg, func, buttonName, condition, "upgrade"),
         hovered = false
     }
 

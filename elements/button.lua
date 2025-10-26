@@ -2,7 +2,7 @@ local button = {}
 button.__index = button
 button.items = {}
 
-function button:new(x, y, img, func, text, condition)
+function button:new(x, y, img, func, text, condition, type)
     obj = setmetatable({}, button)
     
     obj.x = x
@@ -12,6 +12,7 @@ function button:new(x, y, img, func, text, condition)
     obj.height = img:getHeight()
     obj.func = func 
     obj.text = text or ""
+    obj.type = type or "button"
     obj.condition = condition or function ()
         return true
     end
@@ -25,7 +26,7 @@ end
 
 function button:update(dt)
     local mx, my = love.mouse.getPosition()
-
+    Notifications = 0
     for i, v in ipairs(self.items) do
         if mx > v.x and mx < v.x + v.width and my > v.y and my < v.y + v.height and v.condition() then
             v.hovered = true
@@ -37,6 +38,10 @@ function button:update(dt)
             v.scale = math.min(v.scale + 2 * dt, 1.1)
         else
             v.scale = math.max(v.scale - 2 * dt, 1)
+        end
+
+        if v.condition() and v.type == "upgrade" then
+            Notifications = Notifications + 1
         end
     end
 
@@ -70,7 +75,6 @@ function button:mousepressed(x, y, mousebutton)
         if mousebutton == 1 then
             if v.hovered then
                 v.func()
-                print("HEL")
             end
         end
     end

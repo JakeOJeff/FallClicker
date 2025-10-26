@@ -8,6 +8,7 @@ Rebirths = 1
 IncrementValue = 1 * Upgrade * Multiplier * Rebirths
 totalLevels = 2
 totalStates = 5
+Notifications = 0
 -- Requiring Elements
 local clicker = require "elements.clicker"
 background = require "elements.background"

@@ -7,7 +7,7 @@ function gui:load()
     self.coinDisplay = {
         x = 10,
         y = 10,
-        textX = 20,
+        textX = 22,
         textY = 13,
         img = love.graphics.newImage("assets/cDisplay.png")
     }
@@ -16,7 +16,7 @@ function gui:load()
         wW - 42 - 10,
         wH / 2 - 21,
         love.graphics.newImage("assets/sButton.png"),
-        function() end
+        function() end, "", function () return true end, "button"
     )
 
     self.sidebarButton.opened = false
@@ -36,10 +36,10 @@ function gui:load()
         end,
         "Upgrade",
         function()
-            return Coins >= UpgradeCost
+            return Coins >= UpgradeCost 
         end,
         function()
-            if Coins > UpgradeCost and background.state < (totalStates) then
+            if Coins >= UpgradeCost and background.state < (totalStates) then
                 Coins = Coins - UpgradeCost
                 Upgrade = Upgrade + 2 * Rebirths * Multiplier
                 UpgradeCost = UpgradeCost + 20 * Upgrade
@@ -81,6 +81,11 @@ function gui:draw()
 
     love.graphics.setColor(1, 1, 1)
     button:draw()
+
+    love.graphics.setColor(1, 0, 0)
+    if Notifications > 0 then
+        love.graphics.circle("fill", self.sidebarButton.x, self.sidebarButton.y, 4)
+    end
 
     love.graphics.setColor(1, 0.88, 0.92)
     love.graphics.rectangle("fill", self.sidebar.x, self.sidebar.y, self.sidebar.width, self.sidebar.height)
