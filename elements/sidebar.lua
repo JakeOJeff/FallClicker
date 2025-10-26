@@ -23,7 +23,6 @@ function sidebar:update(dt)
     local mx, my = love.mouse.getPosition()
     for i,v in ipairs( self.elements ) do
         
-        if mx > 
 
     end
 end
