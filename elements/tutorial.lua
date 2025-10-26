@@ -1,10 +1,13 @@
 local tutorial = {}
 
 function tutorial:load()
+    self.cooldown = 0
+    self.cooldownTime = 0.3 -- seconds between clicks
+
     self.items = {
         {
             condition = function ()
-                return love.mouse.isDown(1)
+                return tutorial:checkClick()
             end,
             done = false,
             draw = function ()
@@ -21,24 +24,45 @@ function tutorial:load()
                 love.graphics.setFont(fontSMS)
                 love.graphics.setColor(1, 1, 1)
 
-                local textY = wH/2 - h/4  - 20
+                local textY = wH/2 - h/4 - 20
                 love.graphics.printf(text, wW/2 - w/2 + 20, textY, w - 40, "center")
 
                 textY = textY + fontSMS:getHeight() + 140
                 love.graphics.setColor(0.8, 0.8, 0.8)
                 love.graphics.printf("'click' to continue tutorial", wW/2 - w/2 + 20, textY, w - 40, "center")
             end
+        },
+        {
+            condition = function ()
+                return tutorial:checkClick()
+            end,
+            done = false,
+            draw = function ()
+                
+            end
         }
     }
 end
 
-function tutorial:update()
+function tutorial:update(dt)
+    if self.cooldown > 0 then
+        self.cooldown = self.cooldown - dt
+    end
+
     for i, v in ipairs(self.items) do
         if not v.done and v.condition() then
             v.done = true
             break
         end
     end
+end
+
+function tutorial:checkClick()
+    if self.cooldown <= 0 and love.mouse.isDown(1) then
+        self.cooldown = self.cooldownTime
+        return true
+    end
+    return false
 end
 
 function tutorial:draw()
@@ -49,6 +73,5 @@ function tutorial:draw()
         end
     end
 end
-
 
 return tutorial
