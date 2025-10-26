@@ -29,17 +29,17 @@ function gui:load()
     self.sidebar = sidebar:new(wW, 0, 200, wH)
 
     self.sidebar:newElement(
-        "Buy Multiplier",
+        "Upgrade Map",
         "Buys Global Multiplier and Map",
         "Upgrade",
         function()
             return Coins >= UpgradeCost
         end,
         function()
-            if Coins > UpgradeCost and Multiplier <= (totalStates) then
+            if Coins > UpgradeCost and background.state < (totalStates) then
                 Coins = Coins - UpgradeCost
                 UpgradeCost = UpgradeCost + 20
-                Multiplier = Multiplier + 2
+                Upgrade = Upgrade + 2 * Rebirths * Multiplier
                 background.state = background.state + 1
                 background.fadeAlpha = 0
                 background.targetAlpha = 1

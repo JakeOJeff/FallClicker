@@ -5,6 +5,7 @@ Upgrade = 1
 UpgradeCost = 20
 Multiplier = 1
 Rebirths = 1
+IncrementValue = 1 * Upgrade * Multiplier * Rebirths
 totalLevels = 2
 totalStates = 5
 -- Requiring Elements
@@ -34,6 +35,7 @@ function love.update(dt)
     clicker:update(dt)
     effects:update(dt)
     gui:update(dt)
+    IncrementValue = 1 * Upgrade * Multiplier * Rebirths
 end
 
 function love.mousepressed(x, y, button)
