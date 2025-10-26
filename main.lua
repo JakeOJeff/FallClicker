@@ -1,6 +1,6 @@
 -- Globals
 wW, wH = love.graphics.getDimensions()
-Coins = 20
+Coins = 0
 Upgrade = 1
 UpgradeCost = 20
 Multiplier = 1
@@ -25,7 +25,8 @@ font = love.graphics.newFont("assets/BoldPixels.ttf", 36)
 
 -- Set default systems
 love.graphics.setDefaultFilter("nearest", "nearest")
-
+disabledCursor = love.mouse.getSystemCursor("no")
+defaultCursor = love.mouse.getSystemCursor("arrow")
 function love.load()
 
     clicker:load()

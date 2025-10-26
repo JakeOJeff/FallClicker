@@ -27,9 +27,14 @@ end
 function button:update(dt)
     local mx, my = love.mouse.getPosition()
     Notifications = 0
+    love.mouse.setCursor(defaultCursor)
     for i, v in ipairs(self.items) do
-        if mx > v.x and mx < v.x + v.width and my > v.y and my < v.y + v.height and v.condition() then
-            v.hovered = true
+        if mx > v.x and mx < v.x + v.width and my > v.y and my < v.y + v.height then
+            if v.condition()  then
+                v.hovered = true
+            else
+                love.mouse.setCursor(disabledCursor)
+            end
         else
             v.hovered = false
         end
