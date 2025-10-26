@@ -6,6 +6,10 @@ sidebar.elements = {}
 local buyImg = love.graphics.newImage("assets/buy.png")
 local button = require("elements.button")
 
+function sidebar:setDimension(x, y)
+    self.x = x
+    self.y = y
+end
 
 function sidebar:newElement(name, description, buttonName, condition, func)
     local obj = setmetatable( {}, sidebar )
