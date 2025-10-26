@@ -84,7 +84,12 @@ function gui:draw()
 
     love.graphics.setColor(1, 0, 0)
     if Notifications > 0 then
-        love.graphics.circle("fill", self.sidebarButton.x, self.sidebarButton.y, 4)
+        
+        love.graphics.circle("fill", self.sidebarButton.x, self.sidebarButton.y, 7)
+        love.graphics.setFont(fontSS)
+        love.graphics.setColor(1,1,1)
+        love.graphics.print(Notifications, self.sidebarButton.x - 3, self.sidebarButton.y - 8)
+        love.graphics.setFont(fontSS)
     end
 
     love.graphics.setColor(1, 0.88, 0.92)

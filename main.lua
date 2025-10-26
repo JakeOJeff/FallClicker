@@ -1,6 +1,6 @@
 -- Globals
 wW, wH = love.graphics.getDimensions()
-Coins = 0
+Coins = 20
 Upgrade = 1
 UpgradeCost = 20
 Multiplier = 1
@@ -16,6 +16,7 @@ effects = require "elements.effects"
 local gui = require "elements.gui"
 
 -- font
+fontSSSS = love.graphics.newFont("assets/BoldPixels.ttf", 12)
 fontSS = love.graphics.newFont("assets/BoldPixels.ttf", 16)
 fontSMS = love.graphics.newFont("assets/BoldPixels.ttf", 22)
 fontS = love.graphics.newFont("assets/BoldPixels.ttf", 28)
