@@ -12,7 +12,7 @@ background = require "elements.background"
 effects = require "elements.effects"
 
 -- font
-
+fontS = love.graphics.newFont("assets/BoldPixels.ttf", 24)
 font = love.graphics.newFont("assets/BoldPixels.ttf", 36)
 
 -- Set default systems
