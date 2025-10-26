@@ -36,21 +36,28 @@ function sidebar:newElement(name, desc, cost, buttonName, condition, func)
 end
 
 function sidebar:update(dt)
+    local currentY = self.y + 10
+
     for i, v in ipairs(self.elements) do
-        local y = self.y + (i - 1) * self.spacing
+        local elementHeight = fontS:getHeight() + fontSS:getHeight() * 2 + 70
         v.button.x = self.x + 20
-        v.button.y = y + 10 + 50 + fontS:getHeight() + fontSS:getHeight()
+        v.button.y = currentY + elementHeight - 30
+
         if v.button.update then
             v.button:update(dt)
         end
+
+        currentY = currentY + elementHeight + 10 
     end
 end
 
+
 function sidebar:draw()
+    local currentY = self.y + 10
+
     for i, v in ipairs(self.elements) do
-        local y = self.y + (i - 1) * self.spacing
-        local lineY = y + 10  -- starting point
-        local lineSpacing = 5 -- space between lines
+        local lineY = currentY
+        local lineSpacing = 5
 
         -- name
         love.graphics.setColor(0, 0, 0)
@@ -60,20 +67,26 @@ function sidebar:draw()
 
         -- description
         love.graphics.setFont(fontSS)
-        love.graphics.printf(v.desc, self.x + 20, lineY, self.width - 20)
-        lineY = lineY + fontSS:getHeight() + lineSpacing + 15
+        love.graphics.printf(v.desc, self.x + 20, lineY, self.width - 40)
+        lineY = lineY + fontSS:getHeight() + lineSpacing + 10
 
         -- cost
         love.graphics.setColor(0.3, 0.3, 0.3)
-        love.graphics.printf("$"..v.cost(), self.x + 20, lineY, self.width - 20)
-        lineY = lineY + fontSS:getHeight() + lineSpacing
+        love.graphics.printf("$"..v.cost(), self.x + 20, lineY, self.width - 40)
+        lineY = lineY + fontSS:getHeight() + lineSpacing + 10
+
         love.graphics.setColor(1, 1, 1)
 
+        -- draw button
         if v.button.draw then
             v.button:draw()
         end
+
+        -- advance for next element
+        currentY = lineY + 50 -- space before next element
     end
 end
+
 
 function sidebar:mousepressed(x, y, mousebutton)
     for _, v in ipairs(self.elements) do
