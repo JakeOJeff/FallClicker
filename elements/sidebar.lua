@@ -47,9 +47,9 @@ end
 function sidebar:draw()
     for i, v in ipairs(self.elements) do
         local y = self.y + (i - 1) * self.spacing
-        love.graphics.setColor(0, 0, 0)
-        love.graphics.print(v.name, self.x + 60, y)
-        love.graphics.print(v.desc, self.x + 60, y + 20)
+        -- love.graphics.setColor(0, 0, 0)
+        -- love.graphics.print(v.name, self.x + 60, y)
+        -- love.graphics.print(v.desc, self.x + 60, y + 20)
         love.graphics.setColor(1, 1, 1)
 
         if v.button.draw then

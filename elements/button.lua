@@ -47,7 +47,7 @@ function button:draw()
         love.graphics.draw(v.img, -v.width / 2, -v.height / 2)
         love.graphics.pop()
         if v.text ~= "" then
-            love.graphics.print(v.text, v.x + v.width/2 - font:getWidth(v.text)/2, v.y + v.width/2 - font:getHeight()/2)
+            love.graphics.print(v.text, v.x + v.width/2 - font:getWidth(v.text)/2, v.y + v.height/2 - font:getHeight()/2)
         end
     end
 end
