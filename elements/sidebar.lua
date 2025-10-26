@@ -37,7 +37,7 @@ function sidebar:update(dt)
     for i, v in ipairs(self.elements) do
         local y = self.y + (i - 1) * self.spacing
         v.button.x = self.x + 20
-        v.button.y = y + 25 + fontS:getHeight() + fontSS:getHeight()
+        v.button.y = y + 10 + 25 + fontS:getHeight() + fontSS:getHeight()
         if v.button.update then
             v.button:update(dt)
         end
@@ -49,9 +49,9 @@ function sidebar:draw()
         local y = self.y + (i - 1) * self.spacing
         love.graphics.setColor(0, 0, 0)
         love.graphics.setFont(fontS)
-        love.graphics.print(v.name, self.x + 20, y)
+        love.graphics.print(v.name, self.x + 20, y + 10)
         love.graphics.setFont(fontSS)
-        love.graphics.printf(v.desc, self.x + 20, y + 5 + fontS:getHeight(), self.width - 20)
+        love.graphics.printf(v.desc, self.x + 20, y + 10 + 5 + fontS:getHeight(), self.width - 20)
         love.graphics.setColor(1, 1, 1)
 
         if v.button.draw then

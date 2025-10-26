@@ -58,7 +58,11 @@ function effects:draw()
         love.graphics.scale(e.scale, e.scale)
         love.graphics.draw(e.img, -e.img:getWidth() /2 , -e.img:getHeight() /2 )
         love.graphics.pop()
-        love.graphics.print(IncrementValue, e.x, e.y)
+        love.graphics.setColor(0,0,0,0.5)
+        love.graphics.print("+"..IncrementValue, e.x + 3, e.y + 3)
+        love.graphics.setColor(1,1,1)
+        love.graphics.print("+"..IncrementValue, e.x, e.y)
+
 
     end
 end

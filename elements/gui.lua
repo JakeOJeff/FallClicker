@@ -38,8 +38,8 @@ function gui:load()
         function()
             if Coins > UpgradeCost and background.state < (totalStates) then
                 Coins = Coins - UpgradeCost
-                UpgradeCost = UpgradeCost + 20
                 Upgrade = Upgrade + 2 * Rebirths * Multiplier
+                UpgradeCost = UpgradeCost + 20 * Upgrade
                 background.state = background.state + 1
                 background.fadeAlpha = 0
                 background.targetAlpha = 1
