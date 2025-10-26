@@ -2,7 +2,7 @@ local button = {}
 button.__index = button
 button.items = {}
 
-function button:new(x, y, img, func)
+function button:new(x, y, img, func, text)
     obj = setmetatable({}, button)
     
     obj.x = x
@@ -11,6 +11,7 @@ function button:new(x, y, img, func)
     obj.width = img:getWidth()
     obj.height = img:getHeight()
     obj.func = func 
+    obj.text = text or ""
 
     obj.hovered = false
     obj.scale = 1
@@ -45,6 +46,9 @@ function button:draw()
         love.graphics.scale(v.scale)
         love.graphics.draw(v.img, -v.width / 2, -v.height / 2)
         love.graphics.pop()
+        if v.text ~= "" then
+            love.graphics.print(v.text, v.x + v.width/2 - font:getWidth(v.text)/2, v.y + v.width/2 - font:getHeight()/2)
+        end
     end
 end
 
