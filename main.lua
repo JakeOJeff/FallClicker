@@ -20,7 +20,7 @@ local tutorial = require "elements.tutorial"
 -- font
 fontSSSS = love.graphics.newFont("assets/BoldPixels.ttf", 12)
 fontSS = love.graphics.newFont("assets/BoldPixels.ttf", 16)
-fontSMS = love.graphics.newFont("assets/BoldPixels.ttf", 22)
+fontSMS = love.graphics.newFont("assets/BoldPixels.ttf", 20)
 fontS = love.graphics.newFont("assets/BoldPixels.ttf", 28)
 font = love.graphics.newFont("assets/BoldPixels.ttf", 36)
 
