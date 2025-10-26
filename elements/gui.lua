@@ -1,6 +1,7 @@
 local gui = {}
 
 local button = require("elements/button")
+local sidebar = require "elements.sidebar"
 
 function gui:load()
     self.coinDisplay = {
@@ -26,12 +27,16 @@ function gui:load()
     end
     self.sidebarButton.defX = self.sidebarButton.x
 
-    self.sidebar = {
-        x = wW,
-        y = 0,
-        with = 200,
-        height = wH,
-    }
+    self.sidebar.multiplier = sidebar:newElement("Buy Multiplier", "Buys Global Multiplier and Map", function ()
+        if Coins > 50 then
+            return true
+        else
+            return false
+        end
+        end, function ()
+            Coins = Coins - 50
+            Multiplier = Multiplier + 2
+         end)
 
 
 end
