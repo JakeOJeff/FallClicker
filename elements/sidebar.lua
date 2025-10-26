@@ -18,10 +18,11 @@ function sidebar:new(x, y, width, height)
     return obj
 end
 
-function sidebar:newElement(name, desc, buttonName, condition, func)
+function sidebar:newElement(name, desc, cost, buttonName, condition, func)
     local element = {
         name = name,
         desc = desc,
+        cost = cost or 0,
         buttonName = buttonName,
         condition = condition,
         func = func,
@@ -37,7 +38,7 @@ function sidebar:update(dt)
     for i, v in ipairs(self.elements) do
         local y = self.y + (i - 1) * self.spacing
         v.button.x = self.x + 20
-        v.button.y = y + 10 + 25 + fontS:getHeight() + fontSS:getHeight()
+        v.button.y = y + 10 + 50 + fontS:getHeight() + fontSS:getHeight()
         if v.button.update then
             v.button:update(dt)
         end
@@ -47,11 +48,24 @@ end
 function sidebar:draw()
     for i, v in ipairs(self.elements) do
         local y = self.y + (i - 1) * self.spacing
+        local lineY = y + 10  -- starting point
+        local lineSpacing = 5 -- space between lines
+
+        -- name
         love.graphics.setColor(0, 0, 0)
         love.graphics.setFont(fontS)
-        love.graphics.print(v.name, self.x + 20, y + 10)
+        love.graphics.print(v.name, self.x + 20, lineY)
+        lineY = lineY + fontS:getHeight() + lineSpacing + 5
+
+        -- description
         love.graphics.setFont(fontSS)
-        love.graphics.printf(v.desc, self.x + 20, y + 10 + 5 + fontS:getHeight(), self.width - 20)
+        love.graphics.printf(v.desc, self.x + 20, lineY, self.width - 20)
+        lineY = lineY + fontSS:getHeight() + lineSpacing + 15
+
+        -- cost
+        love.graphics.setColor(0.3, 0.3, 0.3)
+        love.graphics.printf("$"..v.cost(), self.x + 20, lineY, self.width - 20)
+        lineY = lineY + fontSS:getHeight() + lineSpacing
         love.graphics.setColor(1, 1, 1)
 
         if v.button.draw then

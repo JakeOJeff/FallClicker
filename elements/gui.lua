@@ -31,6 +31,9 @@ function gui:load()
     self.sidebar:newElement(
         "Upgrade Map",
         "Buys Global Multiplier and Map",
+        function ()
+            return UpgradeCost
+        end,
         "Upgrade",
         function()
             return Coins >= UpgradeCost
