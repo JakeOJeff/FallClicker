@@ -1,5 +1,7 @@
 local gui = {}
 
+local button = require("elements/button")
+
 function gui:load()
     self.coinDisplay = {
         x = 10,
@@ -9,15 +11,19 @@ function gui:load()
         img = love.graphics.newImage("assets/cDisplay.png")
     }
 
-    self.sidebarButton = {
-        x = wW - 42 - 10,
-        y = wH / 2 - 21,
-        targetX = wW - 42 - 10 - 200,
-        scale = 1,
-        hovered = false,
-        opened = false,
-        img = love.graphics.newImage("assets/sButton.png")
-    }
+    self.sidebarButton = button:new(
+        wW - 42 - 10,
+        wH / 2 - 21,
+        love.graphics.newImage("assets/sButton.png"),
+        function ()
+            
+        end
+    )
+    self.sidebarButton.opened = false
+    self.sidebarButton.targetX = wW - 42 - 10 - 200
+    self.sidebarButton.func = function ()
+        self.sidebarButton.opened = not self.sidebarButton.opened
+    end
     self.sidebarButton.defX = self.sidebarButton.x
 
     self.sidebar = {
