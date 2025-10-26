@@ -33,7 +33,7 @@ function gui:load()
         height = wH,
     }
 
-    self.sidebar.multiplier = sidebar:newElement("Buy Multiplier", "Buys Global Multiplier and Map", function ()
+    self.sidebar.multiplier = sidebar:newElement("Buy Multiplier", "Buys Global Multiplier and Map","Upgrade", function ()
         if Coins > 50 then
             return true
         else
