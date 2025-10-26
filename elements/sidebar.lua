@@ -45,7 +45,22 @@ function sidebar:draw()
     
     for i,v in ipairs( self.elements ) do
         
-        
+        local y = self.y + ( i - 1 ) * self.spacing
+
+        love.graphics.print(v.name, self.x + 60, y)
+        love.graphics.print(v.desc, self.x + 60, y + 20)
+
+        if v.button.draw then
+            v.button.draw()
+        end
 
     end
 end
+
+function sidebar:mousepressed(x, y, button)
+    for i, v in ipairs( self.elements ) do
+        v.button:mousepressed(x, y, button)
+    end
+end
+
+return sidebar
