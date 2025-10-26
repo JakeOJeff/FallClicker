@@ -39,20 +39,20 @@ function button:update(dt)
 end
 
 function button:draw()
-
     for i, v in ipairs(button.items) do
         love.graphics.push()
-        love.graphics.translate(v.x + self.sidebarButton.img:getWidth() / 2, self.sidebarButton.y + self.sidebarButton.img:getHeight() / 2)
+        love.graphics.translate(v.x + v.width / 2, v.y + v.height / 2)
         love.graphics.scale(v.scale)
-        love.graphics.draw(v.img, -v.width/2, -v.height/2)
+        love.graphics.draw(v.img, -v.width / 2, -v.height / 2)
         love.graphics.pop()
     end
-
 end
 
-function button:mousepressed(x, y, button)
+
+
+function button:mousepressed(x, y, mousebutton)
     for i, v in ipairs(button.items) do
-        if button == 1 then
+        if mousebutton == 1 then
             if v.hovered then
                 v.func()
             end

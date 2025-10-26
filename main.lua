@@ -3,7 +3,7 @@ wW, wH = love.graphics.getDimensions()
 Coins = 0
 Upgrade = 1
 Multiplier = 1
-Rebirth = 1
+Rebirths = 1
 
 -- Requiring Elements
 local clicker = require "elements.clicker"

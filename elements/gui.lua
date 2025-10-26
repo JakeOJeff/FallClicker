@@ -44,7 +44,7 @@ function gui:update(dt)
         self.sidebarButton.x = math.min(self.sidebarButton.x + 300 * dt, self.sidebarButton.defX)
         self.sidebar.x = self.sidebarButton.x + 42 + 10
     end
-    self.sidebarButton:update(dt)
+    button:update(dt)
 end
 
 function gui:draw()
@@ -65,14 +65,14 @@ function gui:draw()
 
     love.graphics.setColor(1, 1, 1)
     
-    self.sidebarButton:draw()
+    button:draw()
 
     love.graphics.setColor(1, 0.88, 0.92)
     love.graphics.rectangle("fill", self.sidebar.x, self.sidebar.y, self.sidebar.with, self.sidebar.height)
 end
 
-function gui:mousepressed(x, y, button)
-    self.sidebarButton:mousepressed(x, y, button)
+function gui:mousepressed(x, y, mousebutton)
+    button:mousepressed(x, y, mousebutton)
 end
 
 return gui
