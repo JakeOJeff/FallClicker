@@ -50,4 +50,14 @@ function button:draw()
 
 end
 
+function button:mousepressed(x, y, button)
+    for i, v in ipairs(button.items) do
+        if button == 1 then
+            if v.hovered then
+                v.func()
+            end
+        end
+    end
+end
+
 return button
