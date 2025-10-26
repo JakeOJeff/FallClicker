@@ -4,6 +4,7 @@ Coins = 20
 Upgrade = 1
 UpgradeCost = 20
 Multiplier = 1
+MultiplierCost = 500
 Rebirths = 1
 IncrementValue = 1 * Upgrade * Multiplier * Rebirths
 totalLevels = 2

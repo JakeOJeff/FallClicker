@@ -29,8 +29,8 @@ function gui:load()
     self.sidebar = sidebar:new(wW, 0, 200, wH)
 
     self.sidebar:newElement(
-        "Upgrade Map",
-        "Buys Global Multiplier and Map",
+        "Upgrade state",
+        "Add content to the Map",
         function ()
             return UpgradeCost
         end,
@@ -44,6 +44,29 @@ function gui:load()
                 Upgrade = Upgrade + 2 * Rebirths * Multiplier
                 UpgradeCost = UpgradeCost + 20 * Upgrade
                 background.state = background.state + 1
+                background.fadeAlpha = 0
+                background.targetAlpha = 1
+            end
+        end
+    )
+    self.sidebar:newElement(
+        "Upgrade Map",
+        "Buys Global Multiplier and Map",
+        function ()
+            return MultiplierCost
+        end,
+        "Upgrade",
+        function()
+            return Coins >= MultiplierCost and background.state == totalStates 
+        end,
+        function()
+            if Coins >= MultiplierCost and background.state == totalStates and background.level < totalLevels  then
+                Coins = Coins - MultiplierCost
+                Upgrade = Upgrade + 2 * Rebirths * Multiplier
+                Multiplier = Multiplier + 2 * Rebirths * Upgrade
+                MultiplierCost = MultiplierCost + 500 * Multiplier
+                background.state = 1
+                background.level = background.level + 1
                 background.fadeAlpha = 0
                 background.targetAlpha = 1
             end
