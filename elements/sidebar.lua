@@ -23,7 +23,7 @@ function sidebar:newElement(name, desc, buttonName, condition, func)
     obj.y = sidebar.y
     obj.width = 0
 
-    obj.button = button:new()
+    obj.button = button:new(0, 0, buyImg, func, buttonName)
     obj.hovered = false
 
     table.insert(sidebar.elements, obj)

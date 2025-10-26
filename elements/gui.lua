@@ -26,6 +26,12 @@ function gui:load()
         self.sidebarButton.opened = not self.sidebarButton.opened
     end
     self.sidebarButton.defX = self.sidebarButton.x
+    self.sidebar = {
+        x = wW,
+        y = 0,
+        with = 200,
+        height = wH,
+    }
 
     self.sidebar.multiplier = sidebar:newElement("Buy Multiplier", "Buys Global Multiplier and Map", function ()
         if Coins > 50 then
@@ -49,6 +55,7 @@ function gui:update(dt)
         self.sidebarButton.x = math.min(self.sidebarButton.x + 300 * dt, self.sidebarButton.defX)
         self.sidebar.x = self.sidebarButton.x + 42 + 10
     end
+    sidebar:update(dt)
     button:update(dt)
 end
 
@@ -74,6 +81,8 @@ function gui:draw()
 
     love.graphics.setColor(1, 0.88, 0.92)
     love.graphics.rectangle("fill", self.sidebar.x, self.sidebar.y, self.sidebar.with, self.sidebar.height)
+
+    sidebar:draw()
 end
 
 function gui:mousepressed(x, y, mousebutton)
