@@ -36,7 +36,7 @@ function background:updateCoin()
         self.targetAlpha = 1
     end
 
-    if Coins % 40 == 0 and background.level < totalLevels then
+    if Coins % 50 == 0 and background.level < totalLevels then
         self.level = self.level + 1
         self.state = 1
         self.fadeAlpha = 0
@@ -57,7 +57,13 @@ function background:draw()
                     love.graphics.setColor(1, 1, 1, 1)
                 end
 
-                love.graphics.draw(background.levelData[i].state[j], 0, 0)
+                local x, y = 0, 0
+                if j == 5 then
+                    x = love.mouse.getX()/wW * 2
+                    y = love.mouse.getY()/wH * 2
+                end
+
+                love.graphics.draw(background.levelData[i].state[j],x, y)
                 
             end
         end

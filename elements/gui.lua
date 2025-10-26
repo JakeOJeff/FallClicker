@@ -57,8 +57,19 @@ end
 
 function gui:draw()
     love.graphics.draw(self.coinDisplay.img, self.coinDisplay.x, self.coinDisplay.y)
+
+    -- DISPLAYING COINS
+    local str = string.format("%09d", Coins) -- "00000023"
+    local firstReal = string.find(str, "[1-9]") or #str
+    local leadingZeros = string.sub(str, 1, firstReal - 1)
+    local actualNum = string.sub(str, firstReal)
+
     love.graphics.setColor(0.74, 0.66, 0.69)
-    love.graphics.print(Coins, self.coinDisplay.textX, self.coinDisplay.textY)
+    love.graphics.print(leadingZeros, self.coinDisplay.textX, self.coinDisplay.textY)
+
+    local offset = font:getWidth(leadingZeros)
+    love.graphics.setColor(0.54, 0.46, 0.49)
+    love.graphics.print(actualNum, self.coinDisplay.textX + offset, self.coinDisplay.textY)
 
     love.graphics.setColor(1, 1, 1)
     
