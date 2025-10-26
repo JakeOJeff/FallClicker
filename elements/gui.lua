@@ -33,9 +33,10 @@ function gui:load()
         "Buys Global Multiplier and Map",
         "Upgrade",
         function()
-            return Coins > 50
+            return Coins > 0
         end,
         function()
+            print("HELLO")
             Coins = Coins - 50
             Multiplier = Multiplier + 2
         end
@@ -50,9 +51,9 @@ function gui:update(dt)
         self.sidebarButton.x = math.min(self.sidebarButton.x + 300 * dt, self.sidebarButton.defX)
         self.sidebar.x = self.sidebarButton.x + 42 + 10
     end
+    button:update(dt)
 
     self.sidebar:update(dt)
-    button:update(dt)
 end
 
 function gui:draw()
@@ -82,6 +83,7 @@ end
 
 function gui:mousepressed(x, y, mousebutton)
     button:mousepressed(x, y, mousebutton)
+    self.sidebar:mousepressed(x, y, mousebutton)
 end
 
 return gui

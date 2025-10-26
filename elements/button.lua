@@ -26,7 +26,7 @@ end
 function button:update(dt)
     local mx, my = love.mouse.getPosition()
 
-    for i, v in ipairs(button.items) do
+    for i, v in ipairs(self.items) do
         if mx > v.x and mx < v.x + v.width and my > v.y and my < v.y + v.height and v.condition() then
             v.hovered = true
         else
@@ -43,7 +43,7 @@ function button:update(dt)
 end
 
 function button:draw()
-    for i, v in ipairs(button.items) do
+    for i, v in ipairs(self.items) do
         if v.condition() then
             love.graphics.setColor(1,1,1)
         else
@@ -66,10 +66,11 @@ end
 
 
 function button:mousepressed(x, y, mousebutton)
-    for i, v in ipairs(button.items) do
+    for i, v in ipairs(self.items) do
         if mousebutton == 1 then
             if v.hovered then
                 v.func()
+                print("HEL")
             end
         end
     end

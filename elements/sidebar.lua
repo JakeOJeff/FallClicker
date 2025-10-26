@@ -60,9 +60,9 @@ function sidebar:draw()
     end
 end
 
-function sidebar:mousepressed(x, y, button)
+function sidebar:mousepressed(x, y, mousebutton)
     for _, v in ipairs(self.elements) do
-        v.button:mousepressed(x, y, button)
+        v.button:mousepressed(x, y, mousebutton)
     end
 end
 
