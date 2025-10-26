@@ -39,11 +39,15 @@ function button:update(dt)
 end
 
 function button:draw()
+
     for i, v in ipairs(button.items) do
         love.graphics.push()
-        love.graphics.translate(self.sidebarButton.x + self.sidebarButton.img:getWidth() / 2, self.sidebarButton.y + self.sidebarButton.img:getHeight() / 2)
-        love.graphics.scale(self.sidebarButton.scale)
-        love.graphics.draw(self.sidebarButton.img, -self.sidebarButton.img:getWidth()/2, -self.sidebarButton.img:getWidth()/2)
+        love.graphics.translate(v.x + self.sidebarButton.img:getWidth() / 2, self.sidebarButton.y + self.sidebarButton.img:getHeight() / 2)
+        love.graphics.scale(v.scale)
+        love.graphics.draw(v.img, -v.width/2, -v.height/2)
         love.graphics.pop()
     end
+
 end
+
+return button
