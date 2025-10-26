@@ -16,6 +16,10 @@ function tutorial:load()
     }
 end
 
+function tutorial:update()
+    
+end
+
 function tutorial:draw()
     for i, v in ipairs(self.items) do
         if not v.done then

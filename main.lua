@@ -15,6 +15,7 @@ local clicker = require "elements.clicker"
 background = require "elements.background"
 effects = require "elements.effects"
 local gui = require "elements.gui"
+local tutorial = require "elements.tutorial"
 
 -- font
 fontSSSS = love.graphics.newFont("assets/BoldPixels.ttf", 12)
@@ -32,6 +33,7 @@ function love.load()
     clicker:load()
     background:loadLevel()
     gui:load()
+    tutorial:load()
 end
 
 function love.update(dt)
@@ -59,4 +61,5 @@ function love.draw()
 
     clicker:draw()
     gui:draw()
+    tutorial:draw()
 end
