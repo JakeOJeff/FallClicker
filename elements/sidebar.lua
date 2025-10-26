@@ -6,17 +6,19 @@ sidebar.elements = {}
 local buyImg = love.graphics.newImage("assets/buy.png")
 local button = require("elements.button")
 
+sidebar.x = 20
+sidebar.y = 50
+sidebar.spacing = 80
 
 
-function sidebar:newElement(name, buttonName, condition, func)
+function sidebar:newElement(name, desc, buttonName, condition, func)
     local obj = setmetatable( {}, sidebar )
 
     obj.name = name
-    obj.desc = description
+    obj.desc = desc
     obj.buttonName = buttonName
     obj.condition = condition
     obj.func = func
-    obj.x = 0
 
     obj.button = button:new()
 
@@ -36,5 +38,9 @@ end
 
 function sidebar:draw()
     
-    love.graphics.
+    for i,v in ipairs( self.elements ) do
+        
+        
+
+    end
 end
