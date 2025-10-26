@@ -51,6 +51,7 @@ function button:draw()
             love.graphics.print(v.text, v.x + v.width/2 - fontS:getWidth(v.text)/2, v.y + v.height/2 - fontS:getHeight()/2)
         end
     end
+    love.graphics.setFont(font)
 end
 
 
