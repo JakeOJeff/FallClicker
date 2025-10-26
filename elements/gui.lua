@@ -27,9 +27,7 @@ function gui:load()
         height = wH,
     }
 
-    self.buyButton = {
-        
-    }
+
 end
 
 function gui:update(dt)
