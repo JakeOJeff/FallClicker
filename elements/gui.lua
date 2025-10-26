@@ -36,7 +36,7 @@ function gui:load()
         end,
         "Upgrade",
         function()
-            return Coins >= UpgradeCost 
+            return Coins >= UpgradeCost and background.state ~= totalStates
         end,
         function()
             if Coins >= UpgradeCost and background.state < (totalStates) then
@@ -50,12 +50,12 @@ function gui:load()
         end
     )
     self.sidebar:newElement(
-        "Upgrade Map",
+        "Buy Map",
         "Buys Global Multiplier and Map",
         function ()
             return MultiplierCost
         end,
-        "Upgrade",
+        "Buy",
         function()
             return Coins >= MultiplierCost and background.state == totalStates 
         end,
