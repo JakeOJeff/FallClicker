@@ -19,9 +19,11 @@ function sidebar:newElement(name, desc, buttonName, condition, func)
     obj.buttonName = buttonName
     obj.condition = condition
     obj.func = func
+    
+    obj.y = sidebar.y
+    obj.width = 0
 
     obj.button = button:new()
-
     obj.hovered = false
 
     table.insert(sidebar.elements, obj)
@@ -30,9 +32,12 @@ end
 
 function sidebar:update(dt)
     for i,v in ipairs( self.elements ) do
-        
-
-
+        local y = self.y + (i - 1) * self.spacing
+        v.button.x = self.x
+        v.button.y = y
+        if v.button.update then
+            v.button:update(dt)
+        end
     end
 end
 
