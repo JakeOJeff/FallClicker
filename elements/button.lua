@@ -2,7 +2,7 @@ local button = {}
 button.__index = button
 button.items = {}
 
-function button:new(x, y, img, func, scale)
+function button:new(x, y, img, func)
     obj = setmetatable({}, button)
     
     obj.x = x
@@ -13,7 +13,7 @@ function button:new(x, y, img, func, scale)
     obj.func = func 
 
     obj.hovered = false
-    obj.scale = scale
+    obj.scale = 1
     table.insert(self.items, obj)
     return obj
 
