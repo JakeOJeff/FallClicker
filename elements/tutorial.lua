@@ -3,7 +3,7 @@ local tutorial = {}
 function tutorial:load()
     self.cooldown = 0
     self.cooldownTime = 0.3 -- seconds between clicks
-    self.enableEndCooldown = true
+    self.enableEndCooldown = false
     self.endCooldown = 2
     self.clicked = false
     self.readyForNextclick = false
@@ -14,7 +14,7 @@ function tutorial:load()
             condition = function ()
                 return tutorial:checkClick()
             end,
-            done = true,
+            done = false,
             draw = function ()
                 local w = wW / 2.5
                 local h = wH / 2.5
@@ -44,7 +44,7 @@ function tutorial:load()
             postFunc = function ()
                 self.done = true
             end,
-            done = true,
+            done = false,
             draw = function ()
                 local w = 300
                 local h = 100
@@ -80,7 +80,7 @@ function tutorial:load()
             condition = function ()
                 return Coins >= 20
             end,
-            done = true,
+            done = false,
             draw = function ()
                 local w = 300
                 local h = 100
@@ -151,7 +151,7 @@ function tutorial:load()
                 return background.state >= 2
             end,
             postFunc = function ()
-                self.readyForNextclick = true
+                self.enableEndCooldown = true
             end,
             done = false,
             draw = function ()
@@ -187,6 +187,9 @@ function tutorial:load()
         {
             condition = function ()
                 return self.endCooldown <= 0
+            end,
+            postFunc = function ()
+                gui.sidebarButton.opened = false
             end,
             done = false,
             draw = function ()
@@ -225,6 +228,9 @@ end
 function tutorial:update(dt)
     if self.cooldown > 0 then
         self.cooldown = self.cooldown - dt
+    end
+    if self.enableEndCooldown then
+        self.endCooldown = self.endCooldown - dt
     end
 
     for i, v in ipairs(self.items) do
