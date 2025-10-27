@@ -37,9 +37,14 @@ function tutorial:load()
             condition = function ()
                 return tutorial:checkClick()
             end,
+            postFunc = function ()
+                self.done = true
+            end,
             done = false,
             draw = function ()
-                
+                local w = wW / 2.5
+                local h = wH / 2.5
+                local text = "You can check your "
             end
         }
     }
@@ -53,6 +58,9 @@ function tutorial:update(dt)
     for i, v in ipairs(self.items) do
         if not v.done and v.condition() then
             v.done = true
+            if v.postFunc then
+                v.postFunc()
+            end
             break
         end
     end
