@@ -52,7 +52,7 @@ function love.mousepressed(x, y, button)
         clicker:mousepressed(x, y, button)
     end
     gui:mousepressed(x, y, button)
-
+    tutorial:mousepressed(x, y, button)
 end
 
 function love.mousereleased(x, y, button)
