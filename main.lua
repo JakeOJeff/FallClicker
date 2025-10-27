@@ -1,6 +1,6 @@
 -- Globals
 wW, wH = love.graphics.getDimensions()
-Coins = 0
+Coins = 20
 Upgrade = 1
 UpgradeCost = 20
 Multiplier = 1

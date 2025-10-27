@@ -3,6 +3,7 @@ local tutorial = {}
 function tutorial:load()
     self.cooldown = 0
     self.cooldownTime = 0.3 -- seconds between clicks
+    self.wasMouseDown = false
     self.done = false
 
     self.items = {
@@ -10,7 +11,7 @@ function tutorial:load()
             condition = function ()
                 return tutorial:checkClick()
             end,
-            done = false,
+            done = true,
             draw = function ()
                 local w = wW / 2.5
                 local h = wH / 2.5
@@ -40,7 +41,7 @@ function tutorial:load()
             postFunc = function ()
                 self.done = true
             end,
-            done = false,
+            done = true,
             draw = function ()
                 local w = 300
                 local h = 100
@@ -76,10 +77,7 @@ function tutorial:load()
             condition = function ()
                 return Coins >= 20
             end,
-            postFunc = function ()
-                self.done = true
-            end,
-            done = false,
+            done = true,
             draw = function ()
                 local w = 300
                 local h = 100
@@ -114,9 +112,6 @@ function tutorial:load()
             condition = function ()
                 return gui.sidebarButton.opened
             end,
-            postFunc = function ()
-                self.done = true
-            end,
             done = false,
             draw = function ()
                 local w = 300
@@ -136,7 +131,6 @@ function tutorial:load()
                 -- Draw Rectangle
                 love.graphics.setLineWidth(5)
                 love.graphics.setColor(0.3, 0.3, 0.3)
-                print(gui.sidebarButton.x)
                 love.graphics.rectangle("line", gui.sidebarButton.x - 5, gui.sidebarButton.y - 5, gui.sidebarButton.img:getWidth() + 10, gui.sidebarButton.img:getHeight() + 10, 10, 10)
 
                 love.graphics.setFont(fontSMS)
@@ -144,6 +138,79 @@ function tutorial:load()
 
                 
                 local textY = y + 30
+                love.graphics.printf(text, x + 20, textY, w - 40, "center")
+
+
+            end
+        },
+        {
+            condition = function ()
+                return background.state >= 2
+            end,
+            postFunc = function ()
+                self.cooldown = 1
+            end,
+            done = false,
+            draw = function ()
+                local w = 300
+                local h = 100
+                local text = "Now click 'Upgrade' to upgrade your clicks and to add content!"
+
+                local x = wW - 400
+                local y = 200
+
+                love.graphics.setColor(0.3, 0.3, 0.3)
+                love.graphics.rectangle("fill", x, y, w, h, 10, 10)
+
+                love.graphics.setColor(0.8, 0.8, 0.8)
+                love.graphics.rectangle("line", x + 10, y + 10, w - 20, h - 20, 10, 10)
+
+
+                -- Draw Rectangle
+                love.graphics.setLineWidth(5)
+                love.graphics.setColor(0.3, 0.3, 0.3)
+                love.graphics.rectangle("line", gui.sidebar.elements[1].button.x - 5, gui.sidebar.elements[1].button.y - 5, gui.sidebar.elements[1].button.img:getWidth() + 10, gui.sidebar.elements[1].button.img:getHeight() + 10, 10, 10)
+
+                love.graphics.setFont(fontSMS)
+                love.graphics.setColor(1, 1, 1)
+
+                
+                local textY = y + 20
+                love.graphics.printf(text, x + 20, textY, w - 40, "center")
+
+
+            end
+        },
+        {
+            condition = function ()
+                return tutorial:checkClick()
+            end,
+            done = false,
+            draw = function ()
+                local w = 300
+                local h = 100
+                local text = "Once a map is fully upgraded, you can buy the next map!"
+
+                local x = wW - 400
+                local y = 350
+
+                love.graphics.setColor(0.3, 0.3, 0.3)
+                love.graphics.rectangle("fill", x, y, w, h, 10, 10)
+
+                love.graphics.setColor(0.8, 0.8, 0.8)
+                love.graphics.rectangle("line", x + 10, y + 10, w - 20, h - 20, 10, 10)
+
+
+                -- Draw Rectangle
+                love.graphics.setLineWidth(5)
+                love.graphics.setColor(0.3, 0.3, 0.3)
+                love.graphics.rectangle("line", gui.sidebar.elements[2].button.x - 5, gui.sidebar.elements[2].button.y - 5, gui.sidebar.elements[2].button.img:getWidth() + 10, gui.sidebar.elements[2].button.img:getHeight() + 10, 10, 10)
+
+                love.graphics.setFont(fontSMS)
+                love.graphics.setColor(1, 1, 1)
+
+                
+                local textY = y + 20
                 love.graphics.printf(text, x + 20, textY, w - 40, "center")
 
 
