@@ -38,7 +38,9 @@ end
 
 function love.update(dt)
     background:update(dt)
-    clicker:update(dt)
+    if tutorial.done then
+        clicker:update(dt)
+    end
     effects:update(dt)
     gui:update(dt)
     tutorial:update(dt)
@@ -46,7 +48,9 @@ function love.update(dt)
 end
 
 function love.mousepressed(x, y, button)
-    clicker:mousepressed(x, y, button)
+    if tutorial.done then
+        clicker:mousepressed(x, y, button)
+    end
     gui:mousepressed(x, y, button)
 
 end

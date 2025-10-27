@@ -3,6 +3,7 @@ local tutorial = {}
 function tutorial:load()
     self.cooldown = 0
     self.cooldownTime = 0.3 -- seconds between clicks
+    self.done = false
 
     self.items = {
         {
