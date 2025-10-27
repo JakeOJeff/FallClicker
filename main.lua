@@ -14,7 +14,7 @@ Notifications = 0
 local clicker = require "elements.clicker"
 background = require "elements.background"
 effects = require "elements.effects"
-local gui = require "elements.gui"
+gui = require "elements.gui"
 local tutorial = require "elements.tutorial"
 
 -- font

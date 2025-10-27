@@ -42,9 +42,34 @@ function tutorial:load()
             end,
             done = false,
             draw = function ()
-                local w = wW / 2.5
-                local h = wH / 2.5
-                local text = "You can check your "
+                local w = 300
+                local h = 100
+                local text = "You can check your Coins over here!"
+
+                love.graphics.setColor(0.3, 0.3, 0.3)
+                love.graphics.rectangle("fill", 100, 70, w, h, 10, 10)
+
+                love.graphics.setColor(0.8, 0.8, 0.8)
+                love.graphics.rectangle("line", 110, 80, w - 20, h - 20, 10, 10)
+
+
+                -- Draw Rectangle
+                love.graphics.setLineWidth(5)
+                                love.graphics.setColor(0.3, 0.3, 0.3)
+                love.graphics.rectangle("line", gui.coinDisplay.x - 5, gui.coinDisplay.y - 5, gui.coinDisplay.img:getWidth() + 10, gui.coinDisplay.img:getHeight() + 10, 10, 10)
+
+                love.graphics.setFont(fontSMS)
+                love.graphics.setColor(1, 1, 1)
+
+                
+                
+
+                local textY = 90
+                love.graphics.printf(text, 120, textY, w - 40, "center")
+
+                textY = textY + fontSMS:getHeight() + 20
+                love.graphics.setColor(0.8, 0.8, 0.8)
+                love.graphics.printf("'click' to continue tutorial", 120, textY, w - 40, "center")
             end
         }
     }
